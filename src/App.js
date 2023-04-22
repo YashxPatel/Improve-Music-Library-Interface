@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Gallery from './Components/Gallery.js'
 import SearchBar from './Components/SearchBar.js'
-import { DataContext } from "./Contexts/DataContext.js";
+import ArtistView from "./Components/ArtistView.js";
+import AlbumView from "./Components/AmbumView.js";
+
 
 function App() {
   const [search, setSearch] = useState('')
@@ -37,11 +41,19 @@ function App() {
 
   return (
     <div>
-      <SearchBar handleSearch={handleSearch} />
       {message}
-      <DataContext.Provider value={data} >
-        <Gallery />
-      </DataContext.Provider>
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <>
+            <SearchBar handleSearch={handleSearch} />
+            <Gallery data={data}/>
+            </>
+          }/>
+          <Route path='/album/:id' element={<AlbumView />} />
+          <Route path='/artist/:id' element={<ArtistView />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
