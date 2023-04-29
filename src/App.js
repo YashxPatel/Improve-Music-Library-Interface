@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Gallery from './Components/Gallery.js'
 import SearchBar from './Components/SearchBar.js'
 import ArtistView from "./Components/ArtistView.js";
-import AlbumView from "./Components/AmbumView.js";
+import AlbumView from "./Components/AlbumView.js";
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
           setData(data.results)
         } else {
           setMessage('Not found!')
+          setData([])
         }
       }
 
